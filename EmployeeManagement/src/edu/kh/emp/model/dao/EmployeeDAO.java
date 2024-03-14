@@ -62,4 +62,13 @@ public class EmployeeDAO {
 		return 0;
 	}
 
+	public int displayAllEmployee(Connection conn) {
+		
+		
+		
+		return 0;
+	}
+
+	
+
 }

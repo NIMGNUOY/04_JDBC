@@ -20,11 +20,11 @@
     <fullyQualifiedTypeName name="edu.kh.emp.model.service.EmployeeService"/>
     <fullyQualifiedTypeName name="edu.kh.emp.model.vo.Employee"/>
     <fullyQualifiedTypeName name="edu.kh.emp.model.dao.EmployeeDAO"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="edu.kh.emp.common.JDBCTemplate"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
 </qualifiedTypeNameHistroy>

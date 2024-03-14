@@ -27,6 +27,7 @@ public class EmployeeView {
 			System.out.println("1. 직원 추가");
 			System.out.println("2. 직원 정보 수정");
 			System.out.println("3. 직원 정보 삭제");
+			System.out.println("4. 직원 정보 전체 조회");
 			System.out.println("0. 프로그램 종료");
 			System.out.print("메뉴 입력 : ");
 			
@@ -39,6 +40,7 @@ public class EmployeeView {
 				case 1 : addEmployee(); break;
 				case 2 : /*updateEmployee();*/ break;
 				case 3 : /*deleteEmployee();*/ break;
+				case 4 : displayAllEmployee(); break;
 				case 0 : System.out.println("프로그램 종료"); break;
 				
 				}
@@ -90,6 +92,14 @@ public class EmployeeView {
 		
 		if( result > 0 ) System.out.println("직원 정보 추가 성공");
 		else			 System.out.println("직원 추가 실패");
+		
+	}
+	
+	public void displayAllEmployee() {
+		
+		System.out.println("\n =====[전체 직원 정보 조회]===== \n");
+		
+		int result = service.displayAllEmployee();
 		
 	}
 	

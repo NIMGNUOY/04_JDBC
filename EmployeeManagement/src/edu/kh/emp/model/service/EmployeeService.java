@@ -27,4 +27,13 @@ public class EmployeeService {
 		
 	}
 
+	public int displayAllEmployee() {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.displayAllEmployee(conn);
+		
+		return result;
+	}
+
 }
