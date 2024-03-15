@@ -6,16 +6,15 @@ public class EmployeeRun {
 	
 	public static void main(String[] args) {
 		
-		try {
-			
-			EmployeeView view = new EmployeeView();
-			
-			view.startView();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// Run 
+		// -> View(입력/출력) 
+		// -> Service(비즈니스로직 : 데이터가공, 트랜잭션제어) 
+		// -> DAO(DB연결, SQL 실행, 결과반환)
 		
+		// <-> query.xml (SQL문 작성) 
 		
+		new EmployeeView().displayMenu();
+				
 	}
-
+	
 }

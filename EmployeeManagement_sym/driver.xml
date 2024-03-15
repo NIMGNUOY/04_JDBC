@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<comment>driver.xml file!!</comment>
+	<comment>driver.xml 파일</comment>
 	
 	<entry key = "driver">oracle.jdbc.driver.OracleDriver</entry>
 	

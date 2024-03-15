@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<comment>query.xml 파일</comment>
+	
+	<entry key = "insert">
+		INSERT INTO EMPLOYEE VALUES
+		(?, ?, ?, ?, ?, ?, ?, ?)
+	</entry>
+	
+	<entry key = "displayAll">
+		SELECT * FROM EMPLOYEE
+	</entry>
+
+</properties>
