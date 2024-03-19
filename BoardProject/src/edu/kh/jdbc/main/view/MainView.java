@@ -3,6 +3,7 @@ package edu.kh.jdbc.main.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import edu.kh.jdbc.board.view.BoardView;
 import edu.kh.jdbc.common.Session;
 import edu.kh.jdbc.main.model.service.MainService;
 import edu.kh.jdbc.member.model.dto.Member;
@@ -13,6 +14,12 @@ public class MainView {
 	private Scanner sc = new Scanner(System.in);
 	
 	private MainService service = new MainService();
+	
+	// 회원 기능 화면 객체 생성
+	private MemberView memberView = new MemberView();
+	
+	// 게시판 기능 화면 객체 생성
+	private BoardView boardView = new BoardView();
 	
 	
 	/**
@@ -61,8 +68,8 @@ public class MainView {
 					sc.nextLine();	// 입력 버퍼 개행 문자 제거
 					
 					switch (input) {
-					case 1 : memberInterface();
-					case 2 : // 게시판 기능 view
+					case 1 : memberView.memberMenu(); break;
+					case 2 : boardView.boardMenu(); break;
 					case 3 : System.out.println("\n===== 로그아웃 되었습니다 =====\n");
 							 Session.loginMember = null; break;
 							 // 참조하고 있던 로그인 회원객체를 없앰

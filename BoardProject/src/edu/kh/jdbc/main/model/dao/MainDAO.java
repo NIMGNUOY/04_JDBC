@@ -78,6 +78,7 @@ public class MainDAO {
 				
 				member.setMemberNo(memberNo);
 				member.setMemberId(memberId);
+				member.setMemberPw(memberPw);
 				member.setMemberName(memberName);
 				member.setMemberGender(memberGender);
 				member.setEnrollDate(enrollDate);

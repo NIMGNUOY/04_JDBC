@@ -47,11 +47,14 @@ public class MemberView {
 				case 1 : selectMyInfo(); break;
 				case 2 : selectMemberList(); break;
 				case 3 : updateMember(); break;
-				case 4 : // updatePassword(); break;
-				case 5 : break;
-				case 9 : break;
-				case 0 : System.out.println("프로그램 종료"); break;
-				default : System.out.println("메뉴 목록에 있는 번호만 입력해 주세요.");
+				case 4 : updatePassword(); break;
+				case 5 : if( unRegisterMenu() ) return;  break;
+				case 9 : System.out.println("\n ===== 메인 메뉴로 돌아갑니다 ===== \n");break;
+				case 0 : System.out.println("\n===== 프로그램 종료 =====\n"); 
+						// JVM 강제 종료 구문
+						// 매개변수는 기본 0, 다른 숫자는 오류를 의미
+						System.exit(0);
+				default : System.out.println("\n *** 메뉴 목록에 있는 번호만 입력해 주세요 *** \n");
 				
 				}
 				
@@ -166,7 +169,145 @@ public class MemberView {
 		
 	}
 	
+	
+	
+	
+	/**
+	 * 	비밀번호 변경 메서드
+	 */
+	public void updatePassword() {
+		
+		System.out.println("\n =====[비밀번호 변경]=====\n");
+		
+		try {
+			
+			System.out.print("현재 비밀번호 입력 : ");
+			String currPw = sc.next();
+			
+			if(currPw.equals(Session.loginMember.getMemberPw())) {
+				
+				String changedPw = null;
+				
+				while (true) {
+				
+					System.out.print("새 비밀번호 입력 : ");
+					changedPw = sc.next();
+					
+					System.out.print("새 비밀번호 확인 : ");
+					String changedPwCheck = sc.next();
+					
+					if(changedPw.equals(changedPwCheck)) {
+						break;
+					} else {
+						System.out.println("\n *** 새 비밀번호가 일치하지 않습니다  *** \n");
+					} 
+					
+					
+				}
+				
+				String memberId = Session.loginMember.getMemberId();
+				
+				// 서비스 호출(현재 비밀번호, 새 비밀번호, 로그인한 회원 번호)
+				// int result = service.updatePassword(currPw, changedPw, Session.loginMember.getMemberNo())
+				int result = service.updatePassword(memberId,changedPw);
+				
+				if(result > 0) {
+					System.out.println("\n===== 비밀번호 수정 완료 =====\n");
+				} else {
+					System.out.println("\n *** 비밀번호 수정 중 문제가 발생했습니다 다시 시도해주세요 *** \n");
+				}
+				
+			} else {
+				System.out.println("\n*** 비밀번호가 틀렸습니다 비밀번호를 확인해주세요 ***\n");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("\n*** 비밀번호 변경중 예외 발생 ***\n");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	/** 회원탈퇴
+	 * @return true / false
+	 */
+	public boolean unRegisterMenu() {
+		
+		System.out.println("\n===== [회원 탈퇴] ===== \n");
+		
+		System.out.print("현재 비밀번호 : ");
+		String memberPw = sc.next();
+		
+		String code = service.createSecurityCode();
+		System.out.printf("보안문자 입력 [%s] : ", code);	// 보안문자 입력 [240571] : 
+		String input = sc.next();		// 보안문자 입력
+			
+		// 보안문자 일치 여부 확인
+		if(!input.equals(code)) {		// 일치하지 않으면
+			System.out.println("\n *** 보안문자가 일치하지 않습니다 *** \n");
+			return false;
+		} 
+		
+		while(true) {
+			
+			System.out.print("\n정말 탈퇴하시겠습니까(Y/N) : ");
+			char check = sc.next().toUpperCase().charAt(0);
+			
+			if(check == 'N') {
+				System.out.println("\n===== 탈퇴 취소 =====\n");
+				return false;	// 해당 메서드 종료
+			}
+			
+			if(check == 'Y') {
+				break;	// 해당 반복문 종료
+			}
+			
+			// 'Y' , 'N' 이 아닌 경우
+			System.out.println("\n*** 잘못 입력하셨습니다 ***\n");
+			
+		}
+		
+		try {
+			
+			// 회원 탈퇴 서비스 호출
+			int result = service.unRegisterMember(memberPw, Session.loginMember.getMemberNo());
+			
+			if(result > 0) {
+				System.out.println("\n ===== 탈퇴 되었습니다 ===== \n");
+				
+				// 로그아웃 처리
+				Session.loginMember = null;
+				
+				return true;
+				
+			} else {
+				
+				System.out.println("\n*** 현재 비밀번호가 일치하지 않습니다 ***\n");
+				
+			}
+			
+			
+		} catch(Exception e) {
+			System.out.println("\n*** 회원 탈퇴중 예외 발생 ***\n");
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
