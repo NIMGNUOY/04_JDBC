@@ -1,13 +1,12 @@
 package edu.kh.jdbc.board.model.dto;
 
 public class Comment {
-
-	private int commentNo;			// 댓글 번호
-	private String commentContent;	// 댓글 내용
-	private int memberNo;			// 작성자 회원 번호
-	private String memberName;		// 작성자 회원 이름
-	private String createDate;		// 댓글 작성일
-	private int boardNo;			// 작성된 게시글 번호(등록, 수정, 삭제 시 이용)
+	private int commentNo;				// 댓글번호
+	private String commentContent;		// 댓글내용
+	private int memberNo;				// 작성자 회원 번호
+	private String memberName;			// 작성자 회원 이름
+	private String createDate;			// 댓글작성일
+	private int boardNo;				// 작성된 게시글 번호(등록, 수정, 삭제 시 이용)
 	
 	public Comment() {}
 

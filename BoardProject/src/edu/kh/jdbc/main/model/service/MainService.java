@@ -10,12 +10,12 @@ public class MainService {
 	
 	private MainDAO dao = new MainDAO();
 
-	/**	로그인 서비스
+	/** 로그인 서비스
 	 * @param memberId
 	 * @param memberPw
-	 * @return Member
+	 * @return member
 	 */
-	public Member login(String memberId, String memberPw) throws Exception {
+	public Member login(String memberId, String memberPw) throws Exception{
 		
 		// 1. Connection 생성
 		Connection conn = getConnection();
@@ -23,18 +23,18 @@ public class MainService {
 		// 2. DAO 호출
 		Member member = dao.login(conn, memberId, memberPw);
 		
-		// 3. Connection 객체 자원 반환
+		// 3. Connection 반환
 		close(conn);
 		
 		// 4. 결과 반환
 		return member;
 	}
 
-	/**	아디지 중복 검사 서비스
+	/** 아이디 중복 검사 서비스
 	 * @param memberId
 	 * @return
 	 */
-	public int idDuplicationCheck(String memberId) throws Exception {
+	public int idDuplicationCheck(String memberId) throws Exception{
 		
 		Connection conn = getConnection();
 		
@@ -42,43 +42,40 @@ public class MainService {
 		
 		close(conn);
 		
-		
 		return result;
 	}
 
-	/**	회원가입 서비스
+	/** 회원 가입 서비스
 	 * @param member
 	 * @return
 	 */
-	public int signUp(Member member) throws Exception {
+	public int signUp(Member member) throws Exception{
 		
 		Connection conn = getConnection();
 		
 		// DAO 호출
-		int result = dao.signUp(conn, member);	// INSERT 수행
+		int result = dao.signUp(conn, member); // INSERT 수행
 		
 		// 트랜잭션 처리
-		if(result > 0) commit(conn);
-		else		   rollback(conn);
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
 		
 		close(conn);
 		
 		return result;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
